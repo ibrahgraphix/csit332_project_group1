@@ -17,4 +17,4 @@ This week's task: build a candidate dataset register. Find real datasets that fi
 
 ## Status
 
-5 datasets checked and added so far. Assignment asks for at least 15, so more are still being added.
+15 datasets checked and added, which meets the assignment's minimum of 15. See `docs/dataset_register.md` for the full list, the rejected datasets, the ambiguity list, and the write-up on the hardest rule to follow.
