@@ -1,7 +1,7 @@
 # CSIT332 ML Course Project — Component A, Group 1
 
 ## Members
-
+- Ibrahim Shelukindo
 - Abhinav N
 - Nakul Shyamkumar
 
