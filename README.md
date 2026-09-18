@@ -13,7 +13,7 @@ This week's task: build a candidate dataset register. Find real datasets that fi
 
 ## What's in this repo
 
-- `docs/dataset_register.md` — the dataset table, plus the rejected list, the ambiguity list, and the write-up on the hardest rule to follow.
+- `docs/dataset_register.md` — the dataset table, plus the rejected list, the ambiguity list, and the write-up on the hardest rule to follow. All 15 sources are links straight to the actual data file, not a repo homepage.
 
 ## Status
 
