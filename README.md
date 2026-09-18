@@ -13,7 +13,7 @@ This week's task: build a candidate dataset register. Find real datasets that fi
 
 ## What's in this repo
 
-- `docs/dataset_register.md` — the dataset table, plus the rejected list, the ambiguity list, and the write-up on the hardest rule to follow. All 15 sources are links straight to the actual data file, not a repo homepage.
+- `docs/dataset_register.md` — the dataset table, plus the rejected list, the ambiguity list, and the write-up on the hardest rule to follow. All 15 sources are real download links (UCI's official Download button, or Kaggle's Download button), not links that just open as text in the browser.
 
 ## Status
 
