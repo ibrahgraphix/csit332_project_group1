@@ -13,7 +13,7 @@ This week's task: build a candidate dataset register. Find real datasets that fi
 
 ## What's in this repo
 
-- `docs/dataset_register.md` — the dataset table, plus the rejected list, the ambiguity list, and the write-up on the hardest rule to follow. Every source is a single file — no zip to extract. 12 of 15 are real `.csv` files; 2 are single-file Kaggle downloads; 3 are single `.data`/`.tst` files where no `.csv` mirror could be found.
+- `docs/dataset_register.md` — the dataset table, plus the rejected list, the ambiguity list, and the write-up on the hardest rule to follow. 13 of the 15 sources are now Kaggle Download-button links for a cleaner download; 2 have no Kaggle mirror and stay on their original source. Read the note at the top of the register — we couldn't personally re-verify the exact Kaggle files (no login access), so we're upfront about that.
 
 ## Status
 
