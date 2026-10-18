@@ -1,58 +1,60 @@
 # Dataset Register
 
-15 datasets checked so far. This meets the assignment's minimum of 15.
-
-**Important note on this version:** we moved 13 of the 15 sources onto Kaggle for a cleaner download experience (click Download, get a proper file, no text-wall in the browser). Kaggle needs a free account to download from, and — being upfront about this — we couldn't personally download and re-verify the exact Kaggle copy of each file the way we did for our earlier GitHub sources, since that would need a Kaggle login. The row/feature/missingness numbers below are still numbers we genuinely checked ourselves, just on a UCI or GitHub copy of the same dataset, not the specific Kaggle upload. Whoever downloads a file from Kaggle should do a quick `df.shape` check to confirm it matches — it takes 10 seconds. Two datasets (Mammography, Chess King-Rook vs King) have no Kaggle version we could find, so they're still on their original source.
+15 datasets, each checked by downloading the file and counting rows, features, missing values and class balance with pandas. The one exception is Credit Card Fraud, which we counted on a mirror of the same file, because we could not download from Kaggle ourselves. `y = 1` / the 'minority class' in the prevalence column is always the smaller class.
 
 ## Candidate datasets
 
 | Name | Source and URL | Rows | Features | Target and binarisation rule | Class prevalence | Missingness | Licence |
 |---|---|---|---|---|---|---|---|
-| Adult Income | https://www.kaggle.com/datasets/uciml/adult-census-income (Kaggle Download button, free login needed) | 48842 | 14 | Already binary. Income is either <=50K or >50K. | 23.9% earn >50K | workclass 5.7% missing, occupation 5.8% missing, native_country 1.8% missing | CC BY 4.0 |
-| Mammography | https://raw.githubusercontent.com/jbrownlee/Datasets/master/mammography.csv (no Kaggle mirror found — opens as text, use Ctrl+S to save) | 11183 | 6 | Already binary. class 1 means calcification found, -1 means not found. | 2.3% positive | no missing values | Public benchmark dataset, free to use |
-| Credit Card Fraud | https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud (Kaggle Download button, free login needed, single csv) | 284807 | 30 | Already binary. 1 means fraud, 0 means normal transaction. | 0.17% fraud | no missing values | Open Database License (DbCL) v1.0 |
-| Bank Marketing | https://www.kaggle.com/datasets/janiobachmann/bank-marketing-dataset (Kaggle Download button, free login needed) | 45211 | 16 | Already binary. Customer said yes or no to the offer. | 11.7% said yes | no blank cells, but the poutcome column is 81.7% marked unknown | CC BY 4.0 |
-| Default of Credit Card Clients | https://raw.githubusercontent.com/YuChenAmberLu/Data-Science--Credit-Card-Default/master/UCI_Credit_Card.csv | 30000 | 23 (drops the ID column) | Already binary. default.payment.next.month: 1 = defaulted, 0 = did not. | 22.1% defaulted | no missing values | CC BY 4.0 |
-| MAGIC Gamma Telescope | https://www.kaggle.com/datasets/abhinand05/magic-gamma-telescope-dataset (Kaggle Download button, free login needed) | 19020 | 10 | Already binary. class g means gamma ray, h means hadron. | 35.2% are hadron | no missing values | CC BY 4.0 |
-| Online Shoppers Purchasing Intention | https://www.kaggle.com/datasets/henrysue/online-shoppers-intention (Kaggle Download button, free login needed) | 12330 | 17 | Already binary. Revenue is True if the visit ended in a purchase, False if not. | 15.5% ended in a purchase | no missing values | CC BY 4.0 |
-| Skin Segmentation | https://raw.githubusercontent.com/mikey084/Skin_segmentation/master/Skin_NonSkin.txt (tab-separated, opens as text — use Ctrl+S to save; no working .csv-named mirror found) | 245057 | 3 (B, G, R colour values) | Already binary. Class 1 = skin, 2 = non-skin (treat as 0/1). | 20.8% skin | no missing values | CC BY 4.0 |
-| Rain in Australia (weatherAUS) | https://www.kaggle.com/datasets/jsphyg/weather-dataset-rattle-package (Kaggle Download button, free login needed) | 142193 usable (145460 total, 3267 rows dropped for missing target) | 16 (dropped Date, Location, and 4 columns over 30% missing: Sunshine, Evaporation, Cloud9am, Cloud3pm) | Already binary. RainTomorrow is Yes or No. | 22.4% said Yes | worst kept column (Pressure9am) is 9.9% missing, after dropping the 4 columns above | From the Australian Bureau of Meteorology, shared on Kaggle. Check the Kaggle page for exact reuse terms. |
-| Diabetes 130-US Hospitals | https://www.kaggle.com/datasets/anushrevankar/uci-diabetes-130-us-hospitals-dataset (Kaggle Download button, free login needed) | 101766 | 42 (dropped 2 ID columns, and 5 columns over 30% missing: weight, max_glu_serum, A1Cresult, medical_specialty, payer_code) | Was 3 classes (NO, <30, >30 days). Made binary: 1 = readmitted in under 30 days, 0 = not. | 11.2% readmitted under 30 days | worst kept column (race) is 2.2% missing, after dropping the 5 columns above | CC BY 4.0 |
-| Letter Recognition | https://www.kaggle.com/datasets/datajameson/letter-recognition-dataset (Kaggle Download button, free login needed) | 20000 | 16 | Was 26 classes (one per letter). Made binary: 1 = vowel (A, E, I, O, U), 0 = consonant. | 19.4% vowels | no missing values | CC BY 4.0 |
-| Connect-4 | https://www.kaggle.com/datasets/tbrewer/connect-4 (Kaggle Download button, free login needed) | 67557 | 42 | Was 3 classes (win, loss, draw). Made binary: 1 = win, 0 = not a win. | 34.2% not a win | no missing values | Shared by the uploader as "use as you see fit" — original data is CC BY 4.0 via UCI |
-| Internet Firewall Data | https://raw.githubusercontent.com/semnan-university-ai/Internet-Firewall/master/firewall.csv | 65532 | 11 | Was 4 classes (allow, deny, drop, reset-both). Made binary: 1 = allow, 0 = not allowed. | 42.6% not allowed | no missing values | CC BY 4.0 |
-| Nursery | https://www.kaggle.com/datasets/iamashwinks/nursery-dataset (Kaggle Download button, free login needed) | 12960 | 8 | Was 5 classes. Made binary: 1 = not_recom (application not recommended), 0 = any other outcome. | 33.3% not_recom | no missing values | CC BY 4.0 |
-| Avila (training split) | https://raw.githubusercontent.com/simonharris/cleandata/master/offline_data/AvilaTR.csv | 10430 | 10 | Was 12 classes (scribe styles A–Y). Made binary: 1 = class A, 0 = any other class. | 41.1% class A | no missing values | CC BY 4.0. Note: this is the training split only; the full Avila dataset (train+test) is about 20,867 rows. |
+| Adult (Census Income) | https://raw.githubusercontent.com/jbrownlee/Datasets/master/adult-all.csv — (origin: UCI) | 48842 | 14 | Already binary. income: >50K = 1, <=50K = 0. | 23.9% | 3 columns: workclass 5.7%, occupation 5.8%, native-country 1.8% (coded '?') | CC BY 4.0 (UCI) |
+| Mammography | https://raw.githubusercontent.com/jbrownlee/Datasets/master/mammography.csv — (origin: OpenML/KEEL) | 11183 | 6 | Already binary. class: '1' (calcification) = 1, '-1' = 0. | 2.3% | 0%, 0 columns | No explicit licence found; widely mirrored benchmark. Check before redistributing. |
+| Credit Card Fraud (ULB) | https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud — (Kaggle page; we counted the rows on a mirror of the same file, not on the Kaggle download) | 284807 | 30 | Already binary. Class: 1 = fraud, 0 = genuine. | 0.17% | 0%, 0 columns | DbCL v1.0 (Kaggle page) |
+| Bank Marketing | https://raw.githubusercontent.com/khatrideepti/Bank-Marketing-Data-Analysis/master/bank-full.csv — (origin: UCI, semicolon-separated) | 45211 | 16 | Already binary. y: yes = 1, no = 0. | 11.7% | 0% null. 'unknown' is used as a category: poutcome 81.7%, contact 28.8%, education 4.1%, job 0.6% | CC BY 4.0 (UCI) |
+| Default of Credit Card Clients | https://raw.githubusercontent.com/YuChenAmberLu/Data-Science--Credit-Card-Default/master/UCI_Credit_Card.csv — (origin: UCI) | 30000 | 23 | Already binary. default.payment.next.month: 1 = default, 0 = no default. ID column excluded from the feature count. | 22.1% | 0%, 0 columns | CC BY 4.0 (UCI) |
+| MAGIC Gamma Telescope | https://raw.githubusercontent.com/EpistasisLab/tpot/master/tutorials/MAGIC%20Gamma%20Telescope/MAGIC%20Gamma%20Telescope%20Data.csv — (origin: UCI) | 19020 | 10 | Already binary. Class: h (hadron) = 1, g (gamma) = 0. | 35.2% | 0%, 0 columns | CC BY 4.0 (UCI) |
+| Online Shoppers Purchasing Intention | https://raw.githubusercontent.com/sharmaroshan/Online-Shoppers-Purchasing-Intention/master/online_shoppers_intention.csv — (origin: UCI) | 12330 | 17 | Already binary. Revenue: True = 1, False = 0. | 15.5% | 0%, 0 columns | CC BY 4.0 (UCI) |
+| Rain in Australia (weatherAUS) | https://raw.githubusercontent.com/acakin/weatherAUS/master/weatherAUS.csv — (origin: Kaggle, Bureau of Meteorology data) | 142193 | 16 | Already binary. RainTomorrow: Yes = 1, No = 0. 3,267 of 145,460 rows dropped for a missing target. Date and Location excluded. | 22.4% | 4 columns over 30% (Sunshine 47.7%, Evaporation 42.8%, Cloud3pm 40.2%, Cloud9am 37.7%), to be dropped. Worst kept column: Pressure9am 9.9%. (Percentages are out of the 142,193 rows with a target.) | Bureau of Meteorology data via Kaggle; reuse terms on the Kaggle page |
+| Diabetes 130-US Hospitals | https://raw.githubusercontent.com/swengzju/Predicting-Diabetes-Patient-Readmission/master/diabetic_data.csv — (origin: UCI) | 101766 | 42 | 3 classes (NO, >30, <30). Binarised: readmitted '<30' = 1, all others = 0. | 11.2% | 5 columns over 30% (weight 96.9%, max_glu_serum 94.7%, A1Cresult 83.3%, medical_specialty 49.1%, payer_code 39.6%), to be dropped. Worst kept column: race 2.2%. | CC BY 4.0 (UCI) |
+| Letter Recognition | https://raw.githubusercontent.com/aiez/klassif/main/letter.csv — (origin: UCI) | 20000 | 16 | 26 classes (letters). Binarised: vowel (A, E, I, O, U) = 1, consonant = 0. | 19.4% | 0%, 0 columns | CC BY 4.0 (UCI original); this copy is a third-party mirror |
+| Connect-4 | https://raw.githubusercontent.com/ducanng/Decision-Tree-with-scikit-learn/master/connect-4.data — (origin: UCI; .data extension, comma-separated) | 67557 | 42 | 3 classes (win, loss, draw). Binarised: not-win (loss or draw) = 1, win = 0, so that the minority class is 1. | 34.2% | 0%, 0 columns | CC BY 4.0 (UCI) |
+| Nursery | https://raw.githubusercontent.com/aiez/klassif/main/nursery.csv — (origin: UCI) | 12960 | 8 | 5 classes. Binarised: not_recom = 1, all others = 0. | 33.3% | 0%, 0 columns | CC BY 4.0 (UCI original); this copy is a third-party mirror |
+| Skin Segmentation | https://raw.githubusercontent.com/mikey084/Skin_segmentation/master/Skin_NonSkin.txt — (origin: UCI; .txt extension, tab-separated, no header) | 245057 | 3 | Already binary. Fourth column: 1 = skin, 2 = non-skin. Skin recoded to 1, non-skin to 0. | 20.8% | 0%, 0 columns | CC BY 4.0 (UCI) |
+| Internet Firewall Data | https://raw.githubusercontent.com/semnan-university-ai/Internet-Firewall/master/firewall.csv — (origin: UCI) | 65532 | 11 | 4 classes in Action (allow, deny, drop, reset-both). Binarised: not-allow (deny, drop, reset-both) = 1, allow = 0. | 42.6% | 0%, 0 columns | CC BY 4.0 (UCI) |
+| Avila (training split) | https://raw.githubusercontent.com/simonharris/cleandata/master/offline_data/AvilaTR.csv — (origin: UCI; no header) | 10430 | 10 | 12 classes (scribe styles). Binarised: class A = 1, all others = 0. Training split only (full dataset is about 20,867 rows). | 41.1% | 0%, 0 columns | CC BY 4.0 (UCI) |
 
 ## Rejected datasets
 
 | Name | Rows found | Why rejected |
 |---|---|---|
-| Phoneme | 5404 | Too few rows, needs at least 10,000 |
-| Oil Spill | 937 | Too few rows |
-| Sonar | 208 | Too few rows |
-| Pima Indians Diabetes | 768 | Too few rows |
-| German Credit | 1000 | Too few rows |
-| Telco Customer Churn | 7043 | Too few rows |
-| IBM HR Attrition | 1470 | Too few rows |
-| Default of Credit Card Clients | 30000 | Row count looks fine but we couldn't download the file ourselves to check it, so we left it out |
-| Covertype | 581012 | Row count looks fine but we couldn't download the file, and it also needs a binarisation rule since it has 7 classes |
-| HTRU2 (Pulsar Detection) | 17898 | Row count looks fine but we couldn't find a working download link to check it ourselves, so we left it out |
+| Phoneme | 5,404 | Under 10,000 rows |
+| Oil Spill | 937 | Under 10,000 rows |
+| Sonar | 208 | Under 10,000 rows |
+| Pima Indians Diabetes | 768 | Under 10,000 rows |
+| German Credit | 1,000 | Under 10,000 rows |
+| Telco Customer Churn | 7,043 | Under 10,000 rows |
+| IBM HR Attrition | 1,470 | Under 10,000 rows |
+| Covertype | not verified | No downloadable file we could load and count. It would also need a binarisation rule (7 classes). |
+| HTRU2 (Pulsar) | not verified | No working download link found, so the row count could not be checked. |
+| Give Me Some Credit | not verified | The Kaggle download did not work for the group, so the file could not be loaded and counted. |
+| EEG Eye State | 14,980 in the UCI copy we checked; about 4,900 in the copy the group downloaded | The two copies disagree, and we could not settle which is right. Dropped rather than guess. |
+| Statlog Shuttle | 14,500 (test file only) | Only a .tst test-split file was reachable, not a single csv with all rows. |
+| Chess (King-Rook vs King) | 28,056 | Only available as a .data file with no csv version found. |
 
-We looked at 24 datasets in total across all rounds. 15 made it in, 9 did not.
-Main reason for rejecting: too few rows (6 out of 9).
-Other reason: couldn't find a working download link to check the numbers ourselves (3 out of 9: Default of Credit Card Clients, Covertype, HTRU2).
+- We examined 28 datasets in total. 15 are in the register and 13 were rejected.
+- Most common reason: under 10,000 rows (7 of 13).
+- Second most common: no downloadable csv we could load and count (5 of 13: Covertype, HTRU2, Give Me Some Credit, Statlog Shuttle, Chess).
+- Third: two copies of the same dataset disagreed on row count (1 of 13: EEG Eye State).
 
 ## Ambiguity list
 
-1. **Bank Marketing has a column that's 81.7% marked "unknown."** Is that missing data or just a normal answer? We counted it as a normal answer (it means "no past contact"), not missing data. Someone else might count it differently.
-2. **What counts as a feature vs. an ID column?** We dropped any column that was just a row number or ID, since it has no predictive use.
-3. **What to do when the published row count looks right but we can't download the file ourselves?** We left those datasets out instead of trusting the number, since the assignment says to check it ourselves.
-4. **Is Kaggle competition data licensed the same way as a normal Kaggle dataset?** We kept Give Me Some Credit in for now but flagged that competition rules are stricter and should be double-checked.
-5. **For datasets with more than 2 classes (Letter Recognition, Connect-4, Nursery, Avila, Internet Firewall), which class do we pick to turn it binary?** We picked the split that made the most real-world sense for each one (vowel vs consonant, win vs not-win, draw vs not-draw, etc.) rather than just picking the biggest class. A different choice gives a different minority percent, so this is a real decision, not just a formatting step.
-6. **Is it OK to use just part of a dataset if that's the only file we could access?** For Statlog Shuttle, we could only get the 14,500-row test file, not the full ~58,000-row dataset. We used it since it clears the 10,000-row minimum on its own, but we wrote clearly that it's only part of the full dataset.
-7. **We were asked to move everything to Kaggle for a cleaner download experience, but we can't actually log into Kaggle or download from it in our tool — so for the 13 datasets we moved to Kaggle, we could not personally re-verify the row counts on that exact file the way the assignment asks.** We kept our original row/feature/missingness numbers, which we did verify ourselves, but on a UCI or GitHub copy of the same dataset, not the specific Kaggle upload. We've flagged this directly rather than imply we checked something we didn't. Whoever downloads from Kaggle should do a quick `df.shape` check before trusting these numbers fully.
+1. **Is 'unknown' in Bank Marketing missing data?** Counted as a category, not as missing. poutcome is 81.7% 'unknown', which would fail the 30% rule if counted as missing. A stricter reading would drop that column.
+2. **What counts as an identifier column?** Dropped pure row numbers and IDs (e.g. ID in Default of Credit Card Clients). The brief gives no rule for near-unique columns.
+3. **Does the 30% rule apply per column or per dataset?** Read as per column, as written. Columns over 30% are dropped, not the whole dataset (Rain in Australia, Diabetes 130).
+4. **How to binarise a many-class target?** Chose a split that makes sense for each dataset (vowel/consonant, win/not-win, class A/other). A different choice would change prevalence and difficulty, so it is a research decision.
+5. **Can a dataset be used if only part of it is available?** Avila is the training split only (10,430 rows, close to the 10,000 limit). Statlog Shuttle was dropped for this reason.
+6. **Which copy of a dataset is the real one?** Row counts were checked on one copy of each file. EEG Eye State showed that two copies can disagree, so the count has to be re-checked on the exact file used.
+7. **Do .data and .txt files count as csv?** Connect-4 (.data) and Skin Segmentation (.txt) are plain delimited text, but not named .csv. Kept and flagged.
 
-## Hardest rule to follow
+## Hardest criterion to apply, and why
 
-The hardest rule was checking the row count ourselves. It's simple once you have the file, but some datasets we wanted (Default of Credit Card Clients, Covertype, HTRU2) couldn't be downloaded in the time we had, so we couldn't open the file and count the rows ourselves. Rather than just use the number from the dataset page, which is exactly what the assignment says not to do, we left those out. Later we were asked to move everything onto Kaggle for a cleaner download experience, and we found real Kaggle pages for 13 of our 15 datasets — but we can't actually download from Kaggle in our own tool, since it needs a login. So for those 13, the numbers in this register come from checking the same dataset on UCI or GitHub, not from downloading the exact Kaggle file, and we said so directly rather than pretend we'd re-verified something we hadn't. Two datasets (Mammography, Chess King-Rook vs King) had no Kaggle version we could find at all, so those stayed on their original source. The other tricky part was missing data and picking a binarisation rule — several datasets that fit everything else had a few columns that were mostly missing (Rain in Australia, Diabetes 130-US Hospitals), so we had to decide to drop those specific columns rather than the whole dataset, and several others (Letter Recognition, Connect-4, Nursery, Avila, Internet Firewall) had more than two classes, so we had to pick and write down exactly which class counted as the positive one.
+The hardest rule was checking the row count ourselves. Loading a file and counting is easy once you have the file. The problem was getting a file we could trust. Several datasets (Covertype, HTRU2, Give Me Some Credit) could not be downloaded in a form we could load, so we could not count them and left them out instead of copying a number from a dataset page. EEG Eye State was the clearest example of why the rule exists: one copy had 14,980 rows and another had about 4,900, so a published count alone would have been wrong for one of them. The next hardest was missing data, because 'unknown' in Bank Marketing is not a null but would break the 30% rule if counted as one. Binarising many-class targets (Letter Recognition, Connect-4, Nursery, Avila, Firewall) was also a real choice, since each split gives a different prevalence.
